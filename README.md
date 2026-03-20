@@ -14,3 +14,11 @@ This project was made for a mini project in school. Feel free to improve the cod
 ![alt text](https://github.com/realmacaw/real-mart/blob/master/images/update_employee.png)
 
 
+For run this project use "python main.py"
+
+For login the admin portal
+USERNAME = EMP0000
+PASSWORD = admin
+
+if the employee is logining the portel then he or she have to contact to admin to add employee to use the employee portal. 
+
