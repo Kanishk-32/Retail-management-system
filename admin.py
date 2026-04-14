@@ -204,7 +204,19 @@ def about():
     title_lbl = Label(about_window, text=_("Retail Management System"), font=("Helvetica", 18, "bold"), bg="#ffffff", fg="#D2463E")
     title_lbl.pack(pady=(30, 20))
 
-    text_content = """A robust GUI-based application designed 
+    if LANG == "hi":
+        text_content = """स्टोर के कार्यों, इन्वेंट्री, और कर्मचारी 
+प्रबंधन को बेहतर बनाने के लिए 
+डिज़ाइन किया गया एक मजबूत GUI एप्लिकेशन।
+
+🌟 मुख्य डेवलपर्स 🌟
+• कनिष्क गुप्ता
+• हर्षित मिश्रा
+• अश्विन सिंह
+
+हमारे एप्लिकेशन का उपयोग करने के लिए धन्यवाद!"""
+    else:
+        text_content = """A robust GUI-based application designed 
 to streamline retail tasks, inventory control, 
 and employee management.
 
