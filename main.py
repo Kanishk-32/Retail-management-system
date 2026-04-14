@@ -25,6 +25,35 @@ def adm():
     os.system("python admin.py")
     main.deiconify()
 
+def show_help():
+    help_window = Toplevel(main)
+    help_window.geometry("600x400")
+    help_window.title("Application Help & Tutorial")
+    help_window.resizable(0, 0)
+    help_window.configure(bg="#ffffff")
+    
+    title_lbl = Label(help_window, text="Welcome to Big Bazaar System!", font=("Helvetica", 16, "bold"), bg="#ffffff", fg="#D2463E")
+    title_lbl.pack(pady=20)
+    
+    text_content = """This application allows you to manage the retail store easily.
+
+1. Employee Mode: 
+Allows cashiers to bill items to customers, search for products
+in the inventory, and generate invoices.
+
+2. Admin Mode:
+Allows the store manager to manage the inventory (Add/Update/Delete products),
+manage employee details and accounts, and view all system invoices.
+
+To begin, click on either Employee or Admin from the main menu, 
+and login using your credentials."""
+    
+    info_lbl = Label(help_window, text=text_content, font=("Helvetica", 12), bg="#ffffff", fg="#333333", justify=LEFT)
+    info_lbl.pack(padx=20, pady=10, fill=BOTH, expand=True)
+    
+    close_btn = Button(help_window, text="Close", font=("Helvetica", 12, "bold"), bg="#D2463E", fg="white", relief="flat", cursor="hand2", command=help_window.destroy)
+    close_btn.pack(pady=20, ipadx=30, ipady=5)
+
 label1 = Label(main)
 label1.place(relx=0, rely=0, width=1366, height=768)
 img = PhotoImage(file="./images/main.png")
@@ -55,5 +84,13 @@ button2.configure(borderwidth="0")
 img3 = PhotoImage(file="./images/2.png")
 button2.configure(image=img3)
 button2.configure(command=adm)
+
+button3 = Button(main)
+button3.place(relx=0.85, rely=0.05, width=150, height=40)
+button3.configure(relief="flat", overrelief="flat", activebackground="#D2463E")
+button3.configure(cursor="hand2", foreground="#ffffff", background="#D2463E")
+button3.configure(font="-family {Helvetica} -size 12 -weight bold")
+button3.configure(borderwidth="0", text="Help / Tutorial")
+button3.configure(command=show_help)
 
 main.mainloop()

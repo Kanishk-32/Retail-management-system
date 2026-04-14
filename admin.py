@@ -148,8 +148,7 @@ def invoices():
     invoice.mainloop()
 
 def about():
-    pass
-
+    messagebox.showinfo("About Us", "Retail Management System\n\nAdmin Mode Features:\n- Manage Inventory Items\n- Manage Employee Credentials\n- Review Invoices\n\nThis application helps streamline daily operations.", parent=adm)
 
 
 class Admin_Page:
