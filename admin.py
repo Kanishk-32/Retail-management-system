@@ -148,7 +148,31 @@ def invoices():
     invoice.mainloop()
 
 def about():
-    messagebox.showinfo("About Us", "Retail Management System\n\nAdmin Mode Features:\n- Manage Inventory Items\n- Manage Employee Credentials\n- Review Invoices\n\nThis application helps streamline daily operations.", parent=adm)
+    about_window = Toplevel(adm)
+    about_window.geometry("500x450")
+    about_window.title("About Us")
+    about_window.resizable(0, 0)
+    about_window.configure(bg="#ffffff")
+
+    title_lbl = Label(about_window, text="Retail Management System", font=("Helvetica", 18, "bold"), bg="#ffffff", fg="#D2463E")
+    title_lbl.pack(pady=(30, 20))
+
+    text_content = """A robust GUI-based application designed 
+to streamline retail tasks, inventory control, 
+and employee management.
+
+🌟 Core Developers 🌟
+• Kanishk Gupta
+• Harshit Misra
+• Ashwin Singh
+
+Thank you for using our application!"""
+    
+    info_lbl = Label(about_window, text=text_content, font=("Helvetica", 12), bg="#ffffff", fg="#333333", justify=CENTER)
+    info_lbl.pack(padx=20, pady=10, fill=BOTH, expand=True)
+    
+    close_btn = Button(about_window, text="Close", font=("Helvetica", 12, "bold"), bg="#D2463E", fg="white", relief="flat", cursor="hand2", command=about_window.destroy)
+    close_btn.pack(pady=20, ipadx=40, ipady=5)
 
 
 class Admin_Page:
