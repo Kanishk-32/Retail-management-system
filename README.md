@@ -1,23 +1,56 @@
-# MINIMALIST RETAIL MANAGEMENT SYSTEM
+# 🛒 Retail Management System
 
-This project was made for a mini project in school. Feel free to improve the code quality. Cheers!
+Welcome to the **Minimalist Retail Management System**, a fully GUI-based desktop application built natively in Python using the `tkinter` library and powered by an `sqlite3` database! This project was originally designed as a sturdy structural base for inventory control and cashier handling.
 
-## This repository consists of a GUI-based Retail Management System in Python(using tkinter). 
+---
 
-### Pre-Requisites
-`Python 3.7`
+## ✨ Key Features
+The system is divided into two distinctive operational modes:
 
-### Screenshots
-![alt text](https://github.com/realmacaw/real-mart/blob/master/images/main.png)
-![alt text](https://github.com/realmacaw/real-mart/blob/master/images/employee_login.png)
-![alt text](https://github.com/realmacaw/real-mart/blob/master/images/bill_window.png)
-![alt text](https://github.com/realmacaw/real-mart/blob/master/images/update_employee.png)
+### 🛠️ Admin Mode
+- **Inventory Management:** Effortlessly Add, Update, Search, or Delete products from the database.
+- **Employee Handling:** Manage cashiers and employee accounts securely.
+- **Invoice Logging:** Centralized tracking and record-keeping for all generated receipts.
 
+### 💳 Employee / Cashier Mode
+- **Quick Billing:** Smoothly generate invoices for retail customers.
+- **Inventory Search:** Integrated catalog to instantly look up product prices and stock quantities.
+- *(Note: Employees must be registered and authenticated by an Admin to access the cashier portal.)*
 
-For run this project use "python main.py"
+### 💡 Interactive Tutorials
+**New Update:** A built-in "Help & Tutorial" popup is accessible right from the main menu, providing new users instant, interactive onboarding regarding system functionalities.
 
-For login the admin portal
-USERNAME = EMP0000 , PASSWORD = admin
+---
 
-if the employee is logining the portel then he or she have to contact to admin to add employee to use the employee portal. 
+## 📸 Screenshots
 
+| Main Dashboard | Employee Login |
+| :---: | :---: |
+| <img src="https://github.com/realmacaw/real-mart/blob/master/images/main.png" width="400"> | <img src="https://github.com/realmacaw/real-mart/blob/master/images/employee_login.png" width="400"> |
+
+| Billing Interface | Employee Management |
+| :---: | :---: |
+| <img src="https://github.com/realmacaw/real-mart/blob/master/images/bill_window.png" width="400"> | <img src="https://github.com/realmacaw/real-mart/blob/master/images/update_employee.png" width="400"> |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+- **Python**: Version `3.7` or newer.
+- Built-in libraries like `tkinter` and `sqlite3` are utilized, meaning no heavy external `pip` installations are required!
+
+### Installation & Execution
+1. Clone the repository and navigate into the project directory.
+2. Run the main file via your terminal/command prompt:
+   ```bash
+   python main.py
+   ```
+
+### Default Credentials
+To access the administrator configurations out of the box, use the following default login:
+- **Username:** `EMP0000`
+- **Password:** `admin`
+
+---
+*Feel free to experiment and improve the code quality. Cheers and happy coding! 🚀*

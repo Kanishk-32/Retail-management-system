@@ -9,6 +9,53 @@ from tkinter import ttk
 from time import strftime
 from datetime import date
 from tkinter import scrolledtext as tkst
+import json
+try:
+    with open("lang.json", "r", encoding="utf-8") as f:
+        config = json.load(f)
+        LANG = config.get("lang", "hi")
+except Exception:
+    LANG = "hi"
+
+def _(text):
+    if LANG == "hi":
+        translations = {
+            "LOGIN": "लॉग इन",
+            "Logout": "लॉग आउट",
+            "Search": "खोजें",
+            "Total": "कुल",
+            "Generate": "जनरेट",
+            "Clear": "साफ करें",
+            "Exit": "बाहर निकलें",
+            "Are you sure you want to exit?": "क्या आप वाकई बाहर निकलना चाहते हैं?",
+            "Add To Cart": "कार्ट में डालें",
+            "Remove": "हटाएं",
+            "The login is successful": "लॉगिन सफल रहा",
+            "The login is successful.": "लॉगिन सफल रहा।",
+            "Incorrect username or password.": "गलत यूज़र नेम या पासवर्ड।",
+            "Are you sure you want to logout?": "क्या आप वाकई लॉग आउट करना चाहते हैं?",
+            "Login Page": "लॉगिन पेज",
+            "Login": "लॉगिन",
+            "Error": "त्रुटि",
+            "Oops!": "उफ़!",
+            "Oops!!": "उफ़!!",
+            "Success!!": "सफलता!!",
+            "Bill Generated": "बिल जनरेट किया गया",
+            "Inventory": "इन्वेंटरी",
+            "Employees": "कर्मचारी",
+            "Invoices": "चालान (इनवॉइस)",
+            "About Us": "हमारे बारे में",
+            "ADD PRODUCT": "उत्पाद जोड़ें",
+            "UPDATE PRODUCT": "उत्पाद अपडेट करें",
+            "DELETE PRODUCT": "उत्पाद हटाएं",
+            "ADD": "जोड़ें",
+            "UPDATE": "अपडेट करें",
+            "Retail Management System": "रिटेल मैनेजमेंट सिस्टम",
+            "Confirm": "पुष्टि करें",
+        }
+        return translations.get(text, text)
+    return text
+
 #============================================
 
 
@@ -59,7 +106,7 @@ def login(Event=None):
     cur.execute(find_user, [username, password])
     results = cur.fetchall()
     if results:
-        messagebox.showinfo("Login Page", "The login is successful")
+        messagebox.showinfo(_("Login Page"), _("The login is successful"))
         page1.entry1.delete(0, END)
         page1.entry2.delete(0, END)
         root.withdraw()
@@ -72,13 +119,13 @@ def login(Event=None):
         biller.mainloop()
 
     else:
-        messagebox.showerror("Error", "Incorrect username or password.")
+        messagebox.showerror(_("Error"), _("Incorrect username or password."))
         page1.entry2.delete(0, END)
 
 
 
 def logout():
-    sure = messagebox.askyesno("Logout", "Are you sure you want to logout?", parent=biller)
+    sure = messagebox.askyesno(_("Logout"), _("Are you sure you want to logout?"), parent=biller)
     if sure == True:
         biller.destroy()
         root.deiconify()
@@ -119,7 +166,7 @@ class login_page:
         self.button1.configure(background="#D2463E")
         self.button1.configure(font="-family {Poppins SemiBold} -size 20")
         self.button1.configure(borderwidth="0")
-        self.button1.configure(text="""LOGIN""")
+        self.button1.configure(text=_("""LOGIN"""))
         self.button1.configure(command=login)
 
 
@@ -162,7 +209,7 @@ class Cart:
     
 
 def exitt():
-    sure = messagebox.askyesno("Exit","Are you sure you want to exit?", parent=biller)
+    sure = messagebox.askyesno(_("Exit"), _("Are you sure you want to exit?"), parent=biller)
     if sure == True:
         biller.destroy()
         root.destroy()
@@ -221,7 +268,7 @@ class bill_window:
         self.button1.configure(background="#CF1E14")
         self.button1.configure(font="-family {Poppins SemiBold} -size 12")
         self.button1.configure(borderwidth="0")
-        self.button1.configure(text="""Logout""")
+        self.button1.configure(text=_("""Logout"""))
         self.button1.configure(command=logout)
 
         self.button2 = Button(biller)
@@ -234,7 +281,7 @@ class bill_window:
         self.button2.configure(background="#CF1E14")
         self.button2.configure(font="-family {Poppins SemiBold} -size 12")
         self.button2.configure(borderwidth="0")
-        self.button2.configure(text="""Search""")
+        self.button2.configure(text=_("""Search"""))
         self.button2.configure(command=self.search_bill)
 
         self.button3 = Button(biller)
@@ -247,7 +294,7 @@ class bill_window:
         self.button3.configure(background="#CF1E14")
         self.button3.configure(font="-family {Poppins SemiBold} -size 10")
         self.button3.configure(borderwidth="0")
-        self.button3.configure(text="""Total""")
+        self.button3.configure(text=_("""Total"""))
         self.button3.configure(command=self.total_bill)
 
         self.button4 = Button(biller)
@@ -260,7 +307,7 @@ class bill_window:
         self.button4.configure(background="#CF1E14")
         self.button4.configure(font="-family {Poppins SemiBold} -size 10")
         self.button4.configure(borderwidth="0")
-        self.button4.configure(text="""Generate""")
+        self.button4.configure(text=_("""Generate"""))
         self.button4.configure(command=self.gen_bill)
 
         self.button5 = Button(biller)
@@ -273,7 +320,7 @@ class bill_window:
         self.button5.configure(background="#CF1E14")
         self.button5.configure(font="-family {Poppins SemiBold} -size 10")
         self.button5.configure(borderwidth="0")
-        self.button5.configure(text="""Clear""")
+        self.button5.configure(text=_("""Clear"""))
         self.button5.configure(command=self.clear_bill)
 
         self.button6 = Button(biller)
@@ -286,7 +333,7 @@ class bill_window:
         self.button6.configure(background="#CF1E14")
         self.button6.configure(font="-family {Poppins SemiBold} -size 10")
         self.button6.configure(borderwidth="0")
-        self.button6.configure(text="""Exit""")
+        self.button6.configure(text=_("""Exit"""))
         self.button6.configure(command=exitt)
 
         self.button7 = Button(biller)
@@ -299,7 +346,7 @@ class bill_window:
         self.button7.configure(background="#CF1E14")
         self.button7.configure(font="-family {Poppins SemiBold} -size 10")
         self.button7.configure(borderwidth="0")
-        self.button7.configure(text="""Add To Cart""")
+        self.button7.configure(text=_("""Add To Cart"""))
         self.button7.configure(command=self.add_to_cart)
 
         self.button8 = Button(biller)
@@ -312,7 +359,7 @@ class bill_window:
         self.button8.configure(background="#CF1E14")
         self.button8.configure(font="-family {Poppins SemiBold} -size 10")
         self.button8.configure(borderwidth="0")
-        self.button8.configure(text="""Clear""")
+        self.button8.configure(text=_("""Clear"""))
         self.button8.configure(command=self.clear_selection)
 
         self.button9 = Button(biller)
@@ -325,7 +372,7 @@ class bill_window:
         self.button9.configure(background="#CF1E14")
         self.button9.configure(font="-family {Poppins SemiBold} -size 10")
         self.button9.configure(borderwidth="0")
-        self.button9.configure(text="""Remove""")
+        self.button9.configure(text=_("""Remove"""))
         self.button9.configure(command=self.remove_product)
 
         text_font = ("Poppins", "8")
@@ -443,11 +490,11 @@ class bill_window:
                         self.Scrolledtext1.insert('insert', bill_text)
                         self.Scrolledtext1.configure(state="disabled")
                     else:
-                        messagebox.showerror("Oops!", "Out of stock. Check quantity.", parent=biller)
+                        messagebox.showerror(_("Oops!"), _("Out of stock. Check quantity."), parent=biller)
                 else:
-                    messagebox.showerror("Oops!", "Invalid quantity.", parent=biller)
+                    messagebox.showerror(_("Oops!"), _("Invalid quantity."), parent=biller)
             else:
-                messagebox.showerror("Oops!", "Choose a product.", parent=biller)
+                messagebox.showerror(_("Oops!"), _("Choose a product."), parent=biller)
         else:
             self.Scrolledtext1.delete('1.0', END)
             new_li = []
@@ -479,11 +526,11 @@ class bill_window:
                         self.Scrolledtext1.insert('insert', bill_text)
                         self.Scrolledtext1.configure(state="disabled")
                     else:
-                        messagebox.showerror("Oops!", "Out of stock. Check quantity.", parent=biller)
+                        messagebox.showerror(_("Oops!"), _("Out of stock. Check quantity."), parent=biller)
                 else:
-                    messagebox.showerror("Oops!", "Invalid quantity.", parent=biller)
+                    messagebox.showerror(_("Oops!"), _("Invalid quantity."), parent=biller)
             else:
-                messagebox.showerror("Oops!", "Choose a product.", parent=biller)
+                messagebox.showerror(_("Oops!"), _("Choose a product."), parent=biller)
 
     def remove_product(self):
         if(self.cart.isEmpty()!=True):
@@ -493,7 +540,7 @@ class bill_window:
                 try:
                     self.cart.remove_item()
                 except IndexError:
-                    messagebox.showerror("Oops!", "Cart is empty", parent=biller)
+                    messagebox.showerror(_("Oops!"), _("Cart is empty"), parent=biller)
                 else:
                     self.Scrolledtext1.configure(state="normal")
                     get_all_bill = (self.Scrolledtext1.get('1.0', END).split("\n"))
@@ -508,7 +555,7 @@ class bill_window:
                 try:
                     self.cart.remove_item()
                 except IndexError:
-                    messagebox.showerror("Oops!", "Cart is empty", parent=biller)
+                    messagebox.showerror(_("Oops!"), _("Cart is empty"), parent=biller)
                 else:
                     self.Scrolledtext1.delete('1.0', END)
                     new_li = []
@@ -526,7 +573,7 @@ class bill_window:
                     self.Scrolledtext1.configure(state="disabled")
 
         else:
-            messagebox.showerror("Oops!", "Add a product.", parent=biller)
+            messagebox.showerror(_("Oops!"), _("Add a product."), parent=biller)
 
     def wel_bill(self):
         self.name_message = Text(biller)
@@ -555,7 +602,7 @@ class bill_window:
     
     def total_bill(self):
         if self.cart.isEmpty():
-            messagebox.showerror("Oops!", "Add a product.", parent=biller)
+            messagebox.showerror(_("Oops!"), _("Add a product."), parent=biller)
         else:
             self.Scrolledtext1.configure(state="normal")
             strr = self.Scrolledtext1.get('1.0', END)
@@ -578,13 +625,13 @@ class bill_window:
             strr = self.Scrolledtext1.get('1.0', END)
             self.wel_bill()
             if(cust_name.get()==""):
-                messagebox.showerror("Oops!", "Please enter a name.", parent=biller)
+                messagebox.showerror(_("Oops!"), _("Please enter a name."), parent=biller)
             elif(cust_num.get()==""):
-                messagebox.showerror("Oops!", "Please enter a number.", parent=biller)
+                messagebox.showerror(_("Oops!"), _("Please enter a number."), parent=biller)
             elif valid_phone(cust_num.get())==False:
-                messagebox.showerror("Oops!", "Please enter a valid number.", parent=biller)
+                messagebox.showerror(_("Oops!"), _("Please enter a valid number."), parent=biller)
             elif(self.cart.isEmpty()):
-                messagebox.showerror("Oops!", "Cart is empty.", parent=biller)
+                messagebox.showerror(_("Oops!"), _("Cart is empty."), parent=biller)
             else: 
                 if strr.find('Total')==-1:
                     self.total_bill()
@@ -621,7 +668,7 @@ class bill_window:
                         update_qty = "UPDATE raw_inventory SET stock = stock - ? WHERE product_name = ?"
                         cur.execute(update_qty, [qty, name])
                         db.commit()
-                    messagebox.showinfo("Success!!", "Bill Generated", parent=biller)
+                    messagebox.showinfo(_("Success!!"), _("Bill Generated"), parent=biller)
                     self.entry1.configure(state="disabled", disabledbackground="#ffffff", disabledforeground="#000000")
                     self.entry2.configure(state="disabled", disabledbackground="#ffffff", disabledforeground="#000000")
                     self.state = 0
@@ -698,7 +745,7 @@ class bill_window:
             self.state = 0
 
         else:
-            messagebox.showerror("Error!!", "Bill not found.", parent=biller)
+            messagebox.showerror(_("Error!!"), _("Bill not found."), parent=biller)
             self.entry3.delete(0, END)
             
     def time(self):
